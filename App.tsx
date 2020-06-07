@@ -1,7 +1,7 @@
 import React from 'react';
-import Home from './src/pages/Home'
+import Cube from './src/pages/Home'
 import { Canvas } from 'react-three-fiber'
-import { YellowBox } from 'react-native';
+import { YellowBox, View, Text, ScrollView } from 'react-native';
 
 YellowBox.ignoreWarnings([
   'window.performance.clearMeasures is not implemented',
@@ -11,14 +11,50 @@ YellowBox.ignoreWarnings([
 ]);
 
 export default function App() {
+
   return (
-    <Canvas>
-      <Home />
-      <mesh position={[0, 0, 0]}>
-        <planeBufferGeometry attach="geometry" args={[3, 3]} />
-        <meshBasicMaterial attach="material" color='#eee' opacity={1} />
-      </mesh>
-    </Canvas>
+    <ScrollView style={{ flex: 1, paddingTop: 30 }}>
+      <View>
+        <Text style={{ textAlign: 'center', fontSize: 30, fontWeight: 'bold', color: '#aaa' }}>Loja de tenis</Text>
+      </View>
+      <View style={{ flexDirection: 'row' }}>
+        <Canvas style={{ height: 150, width: 150 }}>
+          <ambientLight />
+          <pointLight position={[-3, 5, 0]} intensity={0.4} />
+          <Cube position={[0, 0, 0]} />
+        </Canvas>
+        <Canvas style={{ height: 150, width: 150 }}>
+          <ambientLight />
+          <pointLight position={[-3, 5, 0]} intensity={0.4} />
+          <Cube position={[0, 0, 0]} />
+        </Canvas>
+      </View>
+      <View style={{ flexDirection: 'row' }}>
+        <Canvas style={{ height: 150, width: 150 }}>
+          <ambientLight />
+          <pointLight position={[-3, 5, 0]} intensity={0.4} />
+          <Cube position={[0, 0, 0]} />
+        </Canvas>
+        <Canvas style={{ height: 150, width: 150 }}>
+          <ambientLight />
+          <pointLight position={[-3, 5, 0]} intensity={0.4} />
+          <Cube position={[0, 0, 0]} />
+        </Canvas>
+      </View>
+      <View style={{ flexDirection: 'row' }}>
+        <Canvas style={{ height: 150, width: 150 }}>
+          <ambientLight />
+          <pointLight position={[-3, 5, 0]} intensity={0.4} />
+          <Cube position={[0, 0, 0]} />
+        </Canvas>
+        <Canvas style={{ height: 150, width: 150 }}>
+          <ambientLight />
+          <pointLight position={[-3, 5, 0]} intensity={0.4} />
+          <Cube position={[0, 0, 0]} />
+        </Canvas>
+      </View>
+
+    </ScrollView>
   );
 }
 
