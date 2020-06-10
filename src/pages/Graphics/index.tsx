@@ -2,65 +2,76 @@ import React from 'react';
 import ExpoTHREE, { THREE } from 'expo-three';
 import { View as GraphicsView } from 'expo-graphics';
 
-export default class Graphics extends React.Component {
-  componentDidMount() {
-    THREE.suppressExpoWarnings()
-  }
+const Graphics: React.FC = () => {
+  let scene;
+  let camera;
+  let renderer;
 
-  render() {
-    return (
-      <GraphicsView
-        style={{ flex: 1 }}
-        onContextCreate={this.onContextCreate}
-        onRender={this.onRender}
-      />
-    );
-  }
 
-  onContextCreate = async ({ gl, scale: pixelRatio, width, height }) => {
-    this.renderer = new ExpoTHREE.Renderer({
+  const onContextCreate = async ({ gl, scale: pixelRatio, width, height }) => {
+    renderer = new ExpoTHREE.Renderer({
       gl,
       pixelRatio,
       width,
       height,
     });
 
-    this.scene = new THREE.Scene();
-    this.camera = new THREE.PerspectiveCamera(
+    scene = new THREE.Scene();
+    camera = new THREE.PerspectiveCamera(
       75, width / height, 0.1, 1000);
 
-    this.camera.position.set(1, 1, 1);
-    this.camera.lookAt(0, 0, 0);
+    camera.position.set(1, 1, 1);
+    camera.lookAt(0, 0, 0);
 
 
+    scene.add(new THREE.AmbientLight(0xffffff));
 
-    this.scene.add(new THREE.AmbientLight(0xffffff));
-
-    await this.loadModel();
+    await loadModel();
 
   };
 
-  loadModel = async () => {
-    const obj = {
-      "hotel.obj": require('../../../static/shoe/shoe.obj'),
-      "hotel.mtl": require('../../../static/shoe/shoe.mtl'),
-    }
+  const loadModel = async () => {
+    // const obj = {
+    //   "hotel.obj": require('../../../static/antena/hotel.obj'),
+    //   "hotel.mtl": require('../../../static/antena/hotel.mtl'),
+    //   "metal.png": require('../../../static/antena/metal.png'),
+    // }
 
-    const model = await ExpoTHREE.loadAsync(
-      [obj['hotel.obj'], obj['hotel.mtl']],
-      null,
-      obj
-    );
 
-    // this ensures the model will be small enough to be viewed properly
+
+    // const model = await ExpoTHREE.loadAsync(
+    //   [obj['hotel.obj'], obj['hotel.mtl']],
+    //   null,
+    //   obj
+    // );
+
+
+    // const materials = await ExpoTHREE.loadMtlAsync({ asset: require('../../../static/antena/hotel.mtl') })
+    // console.log(materials)
+
+    const model = await ExpoTHREE.loadObjAsync({ asset: require('../../../static/antena/hotel.obj'), mtlAsset: require('../../../static/antena/hotel.mtl') });
+
+
     ExpoTHREE.utils.scaleLongestSideToSize(model, 1);
 
-    this.scene.add(model)
+
+    scene.add(model);
+
 
   };
 
-  onRender = () => {
-    this.scene.rotation.y += 0.01;
-    this.renderer.render(this.scene, this.camera);
+  const onRender = () => {
+    scene.rotation.y += 0.01;
+    renderer.render(scene, camera);
   };
+
+  return (
+    <GraphicsView
+      style={{ flex: 1, backgroundColor: 'blue' }}
+      onContextCreate={onContextCreate}
+      onRender={onRender}
+    />
+  );
 }
+
+export default Graphics
