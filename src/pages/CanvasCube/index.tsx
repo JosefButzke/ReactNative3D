@@ -29,15 +29,15 @@ const Cube: React.FC = () => {
 
   useEffect(() => {
     const loadModel = async () => {
-      const assetObj = Asset.fromModule(require('../../../static/tamanco/shoe.obj'))
-      const assetMtl = Asset.fromModule(require('../../../static/tamanco/shoe.mtl'))
+      const assetObj = Asset.fromModule(require('../../../static/shoe/shoe.obj'))
+      const assetMtl = Asset.fromModule(require('../../../static/shoe/shoe.mtl'))
 
       await assetObj.downloadAsync()
       await assetMtl.downloadAsync()
 
 
       const model = await ExpoTHREE.loadObjAsync({ asset: assetObj.uri, mtlAsset: assetMtl.uri });
-      ExpoTHREE.utils.scaleLongestSideToSize(model, 2);
+      ExpoTHREE.utils.scaleLongestSideToSize(model, 4);
       ExpoTHREE.utils.alignMesh(model, { y: 0 });
       setModel(model);
     }
@@ -66,7 +66,7 @@ const CanvasCube: React.FC = () => {
   return (
     <Canvas>
       <ambientLight />
-      <pointLight position={[10, 10, 0]} intensity={1} />
+      <pointLight position={[10, 10, 0]} intensity={0.6} />
       <Cube />
     </Canvas>
   )
