@@ -1,0 +1,55 @@
+# Blender MTL File: '01 Shoe.blend'
+# Material Count: 5
+
+newmtl Shoes_-_Leather
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.580519 0.337261 0.151521
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump D:\\Workspace\\Work\\Jamboree Infotainment\\Clients\\Client - Binu Velappan\\03 Shoes\\Texture\\1K-leather_2-normal.jpg
+
+newmtl Shoes_-_Metal
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 3
+
+newmtl Shoes_-_Plastic
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.409016 0.233963 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 3
+
+newmtl Shoes_-_Sole
+Ns 323.999994
+Ka 1.000000 1.000000 1.000000
+Kd 0.023118 0.023118 0.023118
+Ks 0.200000 0.200000 0.200000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+
+newmtl Shoes_-_Velvet
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.090842 0.078187 0.371238
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump D:\\Workspace\\Work\\Jamboree Infotainment\\Clients\\Client - Binu Velappan\\03 Shoes\\Texture\\1K-fabric_59_normal.jpg
+map_Ns D:\\Workspace\\Work\\Jamboree Infotainment\\Clients\\Client - Binu Velappan\\03 Shoes\\Texture\\1K-fabric_59_roughness.jpg
