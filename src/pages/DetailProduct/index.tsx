@@ -2,11 +2,21 @@ import React from 'react';
 import { Container } from './styles'
 import CanvasCube from '../CanvasCube'
 
-const DetailProduct = () => {
+interface IProduct {
+  product: {
+    id: number;
+    name: string;
+    pathObj: string;
+    pathMtl: string;
+    image_url: string;
+  }
+}
+
+const DetailProduct: React.FC<IProduct> = ({ product }) => {
 
   return (
     <Container>
-      <CanvasCube />
+      <CanvasCube pathObj={product.pathObj} pathMtl={product.pathMtl} />
     </Container>
   )
 }

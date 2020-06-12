@@ -1,6 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { YellowBox, ActivityIndicator, View } from 'react-native';
-import { a, useSpring } from 'react-spring/three';
 import { Canvas, useFrame } from 'react-three-fiber';
 import ExpoTHREE from 'expo-three';
 import { Asset } from 'expo-asset';
@@ -17,20 +16,14 @@ window.performance.clearMarks = () => { }
 window.performance.measure = () => { }
 window.performance.mark = () => { }
 
-const Cube: React.FC = () => {
-
+const Cube: React.FC = ({ pathObj, pathMtl }) => {
   const boxRef = useRef()
   const [model, setModel] = useState();
-  const [hovered, setHovered] = useState(true)
-  const props = useSpring({
-    scale: hovered ? [1.5, 1.5, 1.5] : [1, 1, 1],
-    color: hovered ? "orange" : 'green',
-  })
 
   useEffect(() => {
     const loadModel = async () => {
-      const assetObj = Asset.fromModule(require('../../../static/shoe/shoe.obj'));
-      const assetMtl = Asset.fromModule(require('../../../static/shoe/shoe.mtl'));
+      const assetObj = Asset.fromModule(pathObj);
+      const assetMtl = Asset.fromModule(pathMtl);
 
       await assetObj.downloadAsync();
       await assetMtl.downloadAsync();
@@ -60,14 +53,12 @@ onClick={() => setHovered(!hovered)}>
 <a.meshPhysicalMaterial attach="material" color={props.color} opacity={1} />
 </a.mesh> */}
 
-const CanvasCube: React.FC = () => {
-
-
+const CanvasCube: React.FC = ({ pathObj, pathMtl }) => {
   return (
     <Canvas>
       <ambientLight />
       <pointLight position={[0, 10, 10]} intensity={0.6} />
-      <Cube />
+      <Cube pathObj={pathObj} pathMtl={pathMtl} />
     </Canvas>
   )
 }
