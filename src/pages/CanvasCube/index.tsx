@@ -16,14 +16,14 @@ window.performance.clearMarks = () => { }
 window.performance.measure = () => { }
 window.performance.mark = () => { }
 
-const Cube: React.FC = ({ pathObj, pathMtl }) => {
+const Cube: React.FC = () => {
   const boxRef = useRef()
   const [model, setModel] = useState();
 
   useEffect(() => {
     const loadModel = async () => {
-      const assetObj = Asset.fromModule(pathObj);
-      const assetMtl = Asset.fromModule(pathMtl);
+      const assetObj = Asset.fromModule(require('../../../static/tamanco/shoe.obj'));
+      const assetMtl = Asset.fromModule(require('../../../static/tamanco/shoe.mtl'));
 
       await assetObj.downloadAsync();
       await assetMtl.downloadAsync();
@@ -53,12 +53,12 @@ onClick={() => setHovered(!hovered)}>
 <a.meshPhysicalMaterial attach="material" color={props.color} opacity={1} />
 </a.mesh> */}
 
-const CanvasCube: React.FC = ({ pathObj, pathMtl }) => {
+const CanvasCube: React.FC = () => {
   return (
     <Canvas>
       <ambientLight />
       <pointLight position={[0, 10, 10]} intensity={0.6} />
-      <Cube pathObj={pathObj} pathMtl={pathMtl} />
+      <Cube />
     </Canvas>
   )
 }
